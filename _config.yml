@@ -1,3 +1,8 @@
+plugins:
+    - jekyll-seo-tag
+    - jekyll-scholar
+    - jekyll-redirect-from
+
 title: Andrew Lee
 author: GitHub User
 email: ajyl@umich.edu
@@ -62,10 +67,6 @@ plainwhite:
 
 # Build settings
 theme: plainwhite
-
-plugins: # ['jekyll/scholar', 'jekyll]
-    - jekyll-scholar
-    - jekyll-redirect-from
 
 
 remote_theme: samarsault/plainwhite-jekyll
