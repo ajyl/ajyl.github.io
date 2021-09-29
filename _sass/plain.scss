@@ -77,7 +77,8 @@ main {
   }
   .about {
     display: flex;
-    height: 50vh;
+    height: auto;
+    padding-top: 45px;
     padding-bottom: 15vh;
     @media screen and (max-width: $mobileW) {
       height: auto;
