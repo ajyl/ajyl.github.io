@@ -4,7 +4,7 @@ permalink: "/about"
 title: "About"
 ---
 
-Hello! I am a Ph.D. candidate in Computer Science at the University of Michigan. I am priviledged to be a part of the [LIT research group](https://lit.eecs.umich.edu/), being advised by [Professor Rada Mihalcea](https://web.eecs.umich.edu/~mihalcea/).
+Hi! I am a Ph.D. candidate in Computer Science at the University of Michigan. I am priviledged to be a part of the [LIT research group](https://lit.eecs.umich.edu/), being advised by [Professor Rada Mihalcea](https://web.eecs.umich.edu/~mihalcea/).
 
 My research is mostly around computational and statistical models for understanding natural language as well as social phenomena. Currently, I am interested in building intelligent dialogue systems that can guide users in completing their tasks. This entails a lot of interesting questions -- How do we best represent user utterances and dialogue states? How can we explain the behavior of these systems? And how can these systems adapt to new domains?
 
