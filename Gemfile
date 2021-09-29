@@ -2,6 +2,7 @@
 
 source "https://rubygems.org"
 gemspec
-gem "plainwhite"
 gem 'jekyll-scholar', group: :jekyll_plugins
 gem 'jekyll-redirect-from'
+gem 'rake'
+gem 'reduce'
