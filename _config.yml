@@ -2,6 +2,7 @@ plugins:
     - jekyll-seo-tag
     - jekyll-scholar
     - jekyll-redirect-from
+    - jekyll-scholar
 
 title: Andrew Lee
 author: GitHub User
