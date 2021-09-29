@@ -40,7 +40,7 @@ end
 desc "Recompile Sass"
 task :recompile_sass do
   puts "\n## Forcing Sass to recompile"
-  status = system("touch -m assets/scss/styles.scss")
+  status = system("touch -m assets/css/styles.scss")
   puts status ? "Success" : "Failed"
 end
 
@@ -49,7 +49,7 @@ namespace :build do
   task :dev => :recompile_sass do
     puts "\n##  Starting Sass and Jekyll"
     pids = [
-      spawn("sass --watch assets/scss/styles.scss:assets/css/styles.css --sourcemap=none"),
+      spawn("sass --watch assets/css/styles.scss:assets/css/styles.css --sourcemap=none"),
       spawn("jekyll serve -w")
     ]
 
@@ -66,7 +66,7 @@ namespace :build do
   desc "Build _site/ for production"
   task :pro => :recompile_sass do
     puts "\n## Compiling Sass"
-    status = system("sass --style compressed assets/scss/styles.scss:assets/css/styles.css --sourcemap=none")
+    status = system("sass --style compressed assets/css/styles.scss:assets/css/styles.css --sourcemap=none")
     puts status ? "Success" : "Failed"
     puts "\n## Building Jekyll to _site/"
     status = system("jekyll build")
