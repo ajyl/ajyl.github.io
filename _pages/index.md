@@ -1,0 +1,5 @@
+---
+layout: home
+permalink: "/"
+redirect_to: "/about"
+---
