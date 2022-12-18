@@ -92,10 +92,10 @@ end
 desc "Deploy _site/ to master branch"
 task :deploy do
   puts "\n## Deleting master branch"
-  status = system("git branch -D master")
+  status = system("git branch -D main")
   puts status ? "Success" : "Failed"
   puts "\n## Creating new master branch and switching to it"
-  status = system("git checkout -b master")
+  status = system("git checkout -b main")
   puts status ? "Success" : "Failed"
   puts "\n## Forcing the _site subdirectory to be project root"
   status = system("git filter-branch --subdirectory-filter _site/ -f")
