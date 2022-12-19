@@ -34,7 +34,7 @@ task :minify do
         puts "Skipping: #{file}"
       end
   end
-  # puts "Total compression %0.2f\%" % (((original-compressed)/original)*100)
+  puts "Total compression %0.2f\%" % (((original-compressed)/original)*100)
 end
 
 desc "Recompile Sass"
@@ -104,7 +104,7 @@ task :deploy do
   status = system("git checkout source")
   puts status ? "Success" : "Failed"
   puts "\n## Pushing all branches to origin"
-  status = system("git push --all origin --force")
+  status = system("git push --all origin")
   puts status ? "Success" : "Failed"
 end
 
