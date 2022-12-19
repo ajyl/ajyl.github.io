@@ -34,7 +34,7 @@ task :minify do
         puts "Skipping: #{file}"
       end
   end
-  puts "Total compression %0.2f\%" % (((original-compressed)/original)*100)
+  puts "Total compression %0.2f" % (((original-compressed)/original)*100)
 end
 
 desc "Recompile Sass"
