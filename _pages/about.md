@@ -6,7 +6,7 @@ title: "About"
 
 Hello! Since the fall of 2020, I have been working on my Ph.D. in Computer Science at the University of Michigan. I am privileged to be a part of the [LIT research group](https://lit.eecs.umich.edu/), being advised by [Professor Rada Mihalcea](https://web.eecs.umich.edu/~mihalcea/).
 
-Broadly, my research is around computational and statistical models for natural language, and applying them to understand social phenomena. Currently, I am interested in developing models that are applicable in the mental health domain. This includes a wide range of interesting challenges. How do we build computational models to understand or represent human emotion, and how do we measure nuanced concepts like empathy?
+Broadly, my research is around computational and statistical models for natural language, and applying them to understand social phenomena. Currently, I am working in the mental health domain: How do we build computational models to understand or represent human emotion, and how do we measure nuanced concepts like empathy?
 
 I am also interested in language modeling and understanding its reasoning capabilities. Specifically, I am interested in understanding its inner representations of belief-states of the world and how they are used during its decision making process.
 
