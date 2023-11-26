@@ -4,7 +4,7 @@ permalink: "/about"
 title: "About"
 ---
 
-*I am looking for a post-doc position starting in the summer/fall of 2024. I am interested in mechanistic interpretability. If you see me as a good fit, please email me at ajyl[at]umich.edu.*
+**I am looking for a post-doc position starting in the summer/fall of 2024. I am interested in mechanistic interpretability. If you see me as a good fit, please email me at ajyl[at]umich.edu.**
 
 Hello! I am a PhD candidate at the University of Michigan, working on machine learning + natural language processing. I am privileged to be a part of the [LIT research group](https://lit.eecs.umich.edu/), being advised by [Professor Rada Mihalcea](https://web.eecs.umich.edu/~mihalcea/).
 
