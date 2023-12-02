@@ -73,7 +73,7 @@ remote_theme: samarsault/plainwhite-jekyll
 include: ["_pages"]
 
 scholar:
-  last_name: Lee
+  last_name: [Lee]
   first_name: [Andrew]
 
   style: apa
