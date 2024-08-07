@@ -6,8 +6,8 @@
     {% if entry.type == "thesis" %}
       {{reference}}
     {% else %}
-      <div class="pubtitle" markdown="1">
-          {{[entry.title](entry.link) | markdownify }}
+      <div>
+          <a href="{{ entry.link }}">{{ entry.title }}</a>
       </div>
       <div class="author">
         {% for author in entry.author_array %}
