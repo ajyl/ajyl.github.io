@@ -415,7 +415,7 @@ main .about .about-header { display: flex; flex-direction: column; }
 
 main .about .about-header .about-title { display: flex; flex-direction: column; align-items: center; margin-bottom: 17px; }
 
-.pubitem { margin: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 1em; margin-left: 0px; }
+.pubitem { margin: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0em; margin-left: 0px; }
 
 .pubtitle { font-weight: bold; }
 
