@@ -33,25 +33,14 @@ plainwhite:
   navigation:
     - title: About
       url: "/about"
-    - title: Publications
-      url: "/publications"
   # Hard coding CV in _layouts/default.html
     #- title: CV
     #  url: "/cv"
   # generate social links in footer
   social_links:
-    github:  ajyl
-    linkedIn: in/andrew-lee-81819a103
     googlescholar: oQiCjnwAAAAJ
-    #dribbble: jekyll
-    #flickr:   jekyll
-    #instagram: jekyll
-    #pinterest: jekyll
-    #youtube: jekyll
-    #facebook: jekyll
-    #soundcloud: jekyll
-    #telegram: jekyll
-    #gitlab: jekyll
+    twitter: a_jy_l
+    github:  ajyl
     email: ajyl@umich.edu
 
     # mastodon:
