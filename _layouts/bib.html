@@ -20,22 +20,22 @@
           
           {% if forloop.length == 1 %}
             {% if author_is_self %}
-              <b>{{author.last}}. {{author.first | slice: 0}}</b>
+            <b>{{ author.first }} {{author.last}}</b>
             {% else %}
-              {{author.last}}. {{author.first | slice: 0}}
+              {{author.first}} {{author.last}}
             {% endif %}
           {% else %}
             {% unless forloop.last %}
               {% if author_is_self %}
-                <b>{{author.last}}. {{author.first | slice: 0}}</b>,
+              <b>{{author.first}} {{author.last}} </b>,
               {% else %}
-                {{author.last}}. {{author.first | slice: 0}},
+              {{author.first}} {{author.last}},
               {% endif %}
             {% else %}
               {% if author_is_self %}
-                and <b>{{author.last}}. {{author.first | slice: 0}}</b>
+              and <b>{{author.first}} {{author.last}}</b>
               {% else %}
-                and {{author.last}}. {{author.first | slice: 0}}
+              and {{author.first}} {{author.last}}
               {% endif %}
             {% endunless %}
           {% endif %}
@@ -67,13 +67,6 @@
     {% endif %}
     {% if entry.html %}
       <a href="{{ entry.html }}" class="btn btn-sm z-depth-0" role="button" target="_blank">HTML</a>
-    {% endif %}
-    {% if entry.pdf %}
-      {% if entry.pdf contains '://' %}
-      <a href="{{ entry.pdf }}" class="btn btn-sm z-depth-0" role="button" target="_blank">[PDF]</a>
-      {% else %}
-      <a href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button" target="_blank">PDF</a>
-      {% endif %}
     {% endif %}
     {% if entry.data %}
       {% if entry.data contains '://' %}
