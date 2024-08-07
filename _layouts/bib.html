@@ -8,8 +8,6 @@
     {% else %}
       <div>
           <a href="{{ entry.link }}">{{ entry.title }}</a>
-      </div>
-      <div class="author">
         {% for author in entry.author_array %}
           {% assign author_is_self = false %}
           {% if author.last contains author.last %}
