@@ -33,6 +33,8 @@ plainwhite:
   navigation:
     - title: About
       url: "/about"
+    - title: Publications
+      url: "/publications"
   # Hard coding CV in _layouts/default.html
     #- title: CV
     #  url: "/cv"
