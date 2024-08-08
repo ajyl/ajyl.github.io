@@ -13,8 +13,16 @@
         {% for author in entry.author_array %}
           {% assign author_is_self = false %}
           {% if author.last contains author.last %}
-            {% if author.first contains site.scholar.first_name %}
+            {% if site.scholar.first_name contains author.first %}
               {% assign author_is_self = true %}
+            {% else %}
+              {% assign tmp = author.first | split: "*" %}
+              {% if site.scholar.first_name contains tmp[0] %}
+                {% assign author_is_self = true %}
+              {% endif %}
+              {% if site.scholar.first_name contains tmp[1] %}
+                {% assign author_is_self = true %}
+              {% endif %}
             {% endif %}
           {% endif %}
           
