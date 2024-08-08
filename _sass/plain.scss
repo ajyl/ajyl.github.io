@@ -80,6 +80,10 @@ main {
     height: auto;
     padding-top: 45px;
     padding-bottom: 15vh;
+    min-width: $leftWidth;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     @media screen and (max-width: $mobileW) {
       height: auto;
       padding: 5vh 30px;
@@ -91,10 +95,6 @@ main {
       position: fixed;
       max-width: 280px;
     }
-    min-width: $leftWidth;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
     h2 {
       font-size: 22px;
       margin-top: 25px;
@@ -204,10 +204,10 @@ main {
     background-color: #e3e3e3;
     padding: 5px 20px;
     border-radius: 2px;
+    margin-right: 10px;
     @media screen and (max-width: $mobileW) {
       margin-top: 5px;
     }
-    margin-right: 10px;
   }
 }
 .post-date {
