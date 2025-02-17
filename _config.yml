@@ -35,6 +35,8 @@ plainwhite:
       url: "/about"
     - title: Publications
       url: "/publications"
+    - title: Blog
+      url: "/blog"
   # Hard coding CV in _layouts/default.html
     #- title: CV
     #  url: "/cv"
@@ -42,15 +44,9 @@ plainwhite:
   social_links:
     googlescholar: oQiCjnwAAAAJ
     twitter: a_jy_l
-    github:  ajyl
+    github: ajyl
     email: ajyl@umich.edu
 
-    # mastodon:
-    # - username: jekyll
-    #   instance: example.com
-    # - username: jekyll2
-    #   instance: example.com
-  
 
 # If you want to link only specific pages in your header, uncomment
 # this and add the path to the pages in order as they should show up
