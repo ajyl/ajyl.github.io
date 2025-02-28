@@ -7,6 +7,15 @@
 <link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/style.css">
 <title>Steering R1: "Verification" Vectors</title>
+ <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        inlineMath: [['$','$']]
+      }
+    });
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> 
 </head><body>
   <main class="container">
     <section class="about">
@@ -294,7 +303,10 @@ We may be tempted to then intervene at <em>every</em> timestep after the 3rd occ
 
 <h2 id="additional-thoughts">Additional Thoughts</h2>
 
-<p>Are we simply adding the likelihood of synonyms of “correct” and “incorrect” to the model’s CoT?
+<p>Is <code class="language-plaintext highlighter-rouge">W</code> just some linear combination of synonyms for “correct” and synonyms for “incorrect”?
+Probably…</p>
+
+<p>So then we’re simply increasing the likelihood of synonyms of “correct” and “incorrect”?
 Probably.</p>
 
 <p>Also, couldn’t we have just prompted with something like “…(some CoT)… <em>exactly</em>!” to steer the model?
