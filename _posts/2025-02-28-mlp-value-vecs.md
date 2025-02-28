@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Understanding the Role of MLP "Value Vectors"'
-date: 2025-02-27 23:00:00 -0000
+date: 2025-02-28 01:00:00 -0000
 ---
 
 # Context
@@ -63,14 +63,7 @@ Interestingly, even in the previous timestep (when it's predicting the "(" token
 
 
 
-Some possibilities:
-
-(1) The same representation is promoting the mid layer tokens ("success", "OK", "bingo", "yes") as well as the actual predicted tokens ("this").
-
-(2) The model is building a representation for "I've found a solution" (which happens to be nearest neighbors with tokens like "success", "OK"), which is then used for the actual predicted tokens ("this").
-
-Though a subtle difference, I thiiiink what's happening is the former.
-Below are some reasons why.
+In this post I will discuss the role that MLP blocks play in generating the tokens seen in mid layers, as well as potentially the final predictions.
 
 
 ## Looking at MLP "Value Vectors"
