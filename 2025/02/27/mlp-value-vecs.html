@@ -140,7 +140,7 @@ Below are some reasons why.</p>
 <h2 id="looking-at-mlp-value-vectors">Looking at MLP “Value Vectors”</h2>
 
 <p>I like to think of MLP blocks by rows and columns:
-Instead of $ MLP(x) = \sigma(W_kx)W_v $, we can express MLPs as $ MLP(x) = \sum_i^{d_{mlp}} = \sigma(x \cdot k_i)v_i $, where $k_i, v_i \in \mathcal{R}^d$ are the $i$-th row and column of $W_k$ and $W_v$ respectively.</p>
+Instead of $ MLP(x) = \sigma(W_kx)W_v $, we can express MLPs as $ MLP(x) = \sum_i^{d_{mlp}} = \sigma(x \cdot k_i)v_i $, where $k_i, v_i \in R^d$ are the $i$-th row and column of $W_k$ and $W_v$ respectively.</p>
 
 <p>I will refer to $k_i$ as key vectors, and $v_i$ as value vectors.</p>
 
@@ -155,13 +155,14 @@ We can’t examine all of them.</p>
 
 <p>Instead, we can rely on our probe (see <a href="https://ajyl.github.io/2025/02/16/steering-R1.html">Part I</a>) to guide us.
 Namely, we can think of probe <code class="language-plaintext highlighter-rouge">W[0]</code> as encoding “This is not correct” and <code class="language-plaintext highlighter-rouge">W[1]</code> as “This is correct”.
-Luckily, these probes are also in $\mathcal{R}^d$.
+Luckily, these probes are also in $R^d$.
 So we can simply take the cosine similarity scores between each of our value vectors and our probes, and look at the ones with highest similarity.
 (I think of value vectors that rank highest here as vectors that contribute the most towards one of the <code class="language-plaintext highlighter-rouge">W</code> directions. This is mainly because transformers use residual connections.)</p>
 
 <p>Here are some examples:</p>
 
-<p>For <code class="language-plaintext highlighter-rouge">W[0]</code> (“Not found answer yet”):</p>
+<p>For <code class="language-plaintext highlighter-rouge">W[0]</code> (“Not found answer yet”):
+(I am using <code class="language-plaintext highlighter-rouge">MLP[layer, index]</code> to denote the value vector at layer <code class="language-plaintext highlighter-rouge">layer</code> and index <code class="language-plaintext highlighter-rouge">index</code>.)</p>
 
 <table>
   <thead>
@@ -172,43 +173,43 @@ So we can simply take the cosine similarity scores between each of our value vec
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">32, 5650</td>
+      <td style="text-align: left">MLP[32, 5650]</td>
       <td style="text-align: left">’ não’, ‘ nicht’, ‘不’, ‘不在’, ‘ không’, ‘不会’, ‘ не’, ‘ 不’, ‘不會’, ‘不是一个’ <br /> <span style="color: blue;">‘não’, ‘nicht’, ‘not’, ‘not’, ‘không’, ‘won’, ‘не’, ‘no’, ‘won’, ‘not a’ </span></td>
     </tr>
     <tr>
-      <td style="text-align: left">32, 767</td>
+      <td style="text-align: left">MLP[32, 767]</td>
       <td style="text-align: left">’ không’, ‘没有’, ‘ nicht’, ‘ not’, ‘不会’, ‘不能’, ‘ neither’, ‘ não’, ‘ไม’, ‘沒有’ <br /> <span style="color: blue;">’ không ‘, ‘no’, ‘ nicht ‘, ‘ not ‘, ‘won’, ‘can’t’, ‘ neither ‘, ‘ não ‘, ‘ไม ‘, ‘no’ </span></td>
     </tr>
     <tr>
-      <td style="text-align: left">30, 6404</td>
+      <td style="text-align: left">MLP[30, 6404]</td>
       <td style="text-align: left">‘不是’, ‘并非’, ‘ not’, ‘不是一个’, ‘也不是’, ‘not’, ‘ NOT’, ‘\tnot’, ‘并不是’, ‘不再是’ <br /> <span style="color: blue;">‘is not’, ‘is not’, ‘not’, ‘is not a’, ‘is not’, ‘not’, ‘NOT’, ‘\tnot’, ‘is not’, ‘is not’ </span></td>
     </tr>
     <tr>
-      <td style="text-align: left">26, 744</td>
+      <td style="text-align: left">MLP[26, 744]</td>
       <td style="text-align: left">‘未能’, ‘不够’, ‘ nicht’, ‘不像’, ‘达不到’, ‘不清楚’, ‘不具备’, ‘不到位’, ‘不符’, ‘还不’ <br /> <span style="color: blue;">‘failed’, ‘not enough’, ‘ nicht’, ‘not like’, ‘cannot reach’, ‘not clear’, ‘not available’, ‘not in place’, ‘not in line’, ‘not yet’ </span></td>
     </tr>
     <tr>
-      <td style="text-align: left">31, 10127</td>
+      <td style="text-align: left">MLP[31, 10127]</td>
       <td style="text-align: left">’ not’, ‘ không’, ‘ nicht’, ‘不会’, ‘不能’, ‘不是’, ‘ не’, ‘not’, ‘\tnot’, ‘ não’ <br /> <span style="color: blue;">’ not’, ‘ không’, ‘ nicht’, ‘won’, ‘can’t’, ‘is not’, ‘ не’, ‘not’, ‘\tnot’, ‘ não’ </span></td>
     </tr>
     <tr>
-      <td style="text-align: left">23, 7356</td>
+      <td style="text-align: left">MLP[23, 7356]</td>
       <td style="text-align: left">‘不利于’, ‘造成了’, ‘会造成’, ‘严重影响’, ‘禁止’, ‘ threaten’, ‘ threatens’, ‘不可避免’, ‘严重’, ‘ caution’ <br /> <span style="color: blue;">‘unfavorable’, ‘caused’, ‘will cause’, ‘seriously affect’, ‘prohibit’, ‘threaten’, ‘threatens’, ‘inevitable’, ‘serious’, ‘caution’ </span></td>
     </tr>
     <tr>
-      <td style="text-align: left">26, 6619</td>
+      <td style="text-align: left">MLP[26, 6619]</td>
       <td style="text-align: left">‘缺乏’, ‘缺少’, ‘不方便’, ‘ lacks’, ‘难以’, ‘未能’, ‘无法’, ‘ lack’, ‘得不到’, ‘不符合’ <br /> <span style="color: blue;">‘lack’, ‘lack’, ‘inconvenience’, ‘lacks’, ‘difficult’, ‘failed’, ‘cannot’, ‘lack’, ‘cannot get’, ‘not in line with’ </span></td>
     </tr>
     <tr>
-      <td style="text-align: left">30, 10722</td>
+      <td style="text-align: left">MLP[30, 10722]</td>
       <td style="text-align: left">‘不会’, ‘不會’, ‘也不会’, ‘都不会’, ‘ doesn’, ‘并不会’, ‘ neither’, ‘ doesnt’, ‘ nicht’, ‘ never’ <br /> <span style="color: blue;">‘won’t’, ‘won’t’, ‘nor’, ‘neither’, ‘ doesn’, ‘ not’, ‘ neither’, ‘ doesnt’, ‘ nicht’, ‘ never’ </span></td>
     </tr>
     <tr>
-      <td style="text-align: left">27, 9766</td>
+      <td style="text-align: left">MLP[27, 9766]</td>
       <td style="text-align: left">‘是不可能’, ‘ neither’, ‘看不到’, ‘不存在’, ‘是不会’, ‘ nowhere’, ‘ nothing’, ‘ none’, ‘没有任何’, ‘都没有’ <br /> <span style="color: blue;">‘It’s impossible’, ‘neither’, ‘can’t see’, ‘doesn’t exist’, ‘will never’, ‘ nowhere’, ‘ nothing’, ‘ none’, ‘nothing’, ‘nothing’ </span></td>
     </tr>
     <tr>
-      <td style="text-align: left">27, 4971</td>
+      <td style="text-align: left">MLP[27, 4971]</td>
       <td style="text-align: left">’ inefficient’, ‘没能’, ‘inity’, ‘不方便’, ‘Danger’, ‘ disadvantage’, ‘不利于’, ‘还不如’, ‘ challenged’, ‘ขาด’ <br /> <span style="color: blue;">’ inefficient ‘, ‘failed ‘, ‘inity ‘, ‘inconvenient ‘, ‘Danger ‘, ‘ disadvantage ‘, ‘unfavorable ‘, ‘not as good as ‘, ‘ challenged ‘, ‘ขาด ‘ </span></td>
     </tr>
   </tbody>
@@ -225,30 +226,34 @@ So we can simply take the cosine similarity scores between each of our value vec
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">26, 6475</td>
+      <td style="text-align: left">MLP[26, 6475]</td>
       <td style="text-align: left">‘倒是’, ‘不失’, ‘适度’, ‘successful’, ‘.success’, ‘却是’, ‘ successful’, ‘没事’, ‘完好’, ‘还不错’ <br /> <span style="color: blue;">‘It is’, ‘not lost’, ‘moderate’, ‘successful’, ‘.success’, ‘but it is’, ‘ successful’, ‘nothing’, ‘intact’, ‘not bad’ </span></td>
     </tr>
     <tr>
-      <td style="text-align: left">29, 6676</td>
-      <td style="text-align: left">’ yes’, ‘ Yes’, ‘Bindable’, ‘ exactly’, ‘Yes’, ‘“Yes’, ‘yes’, ‘ Yep’, ‘ Exactly’, ‘ included’]</td>
+      <td style="text-align: left">MLP[29, 6676]</td>
+      <td style="text-align: left">’ yes’, ‘ Yes’, ‘Bindable’, ‘ exactly’, ‘Yes’, ‘“Yes’, ‘yes’, ‘ Yep’, ‘ Exactly’, ‘ included’</td>
     </tr>
     <tr>
-      <td style="text-align: left">25, 1124</td>
+      <td style="text-align: left">MLP[25, 1124]</td>
       <td style="text-align: left">‘ELY’, ‘怫’, ‘yes’, ‘ Awesome’, ‘itchen’, ‘没错’, ‘etur’, ‘即时发生’, ‘ños’, ‘emade’ <br /> <span style="color: blue;">‘ELY’, ‘怫’, ‘yes’, ‘ Awesome’, ‘itchen’, ‘That’s right’, ‘etur’, ‘Immediate’, ‘ños’, ‘emade’] </span></td>
     </tr>
     <tr>
-      <td style="text-align: left">27, 10388</td>
+      <td style="text-align: left">MLP[27, 10388]</td>
       <td style="text-align: left">’ mirac’, ‘乐观’, ‘安然’, ‘ Relief’, ‘幸’, ‘.isSuccess’, ‘.SUCCESS’, ‘ favorable’, ‘优点’, ‘顺利’ <br /> <span style="color: blue;">’ mirac ‘, ‘ Optimistic ‘, ‘ Safe ‘, ‘ Relief ‘, ‘ Luck ‘, ‘.isSuccess ‘, ‘.SUCCESS ‘, ‘ favorable ‘, ‘ Advantages ‘, ‘ Smooth ‘ </span></td>
     </tr>
     <tr>
-      <td style="text-align: left">30, 8233</td>
+      <td style="text-align: left">MLP[30, 8233]</td>
       <td style="text-align: left">’ correctly’, ‘正确’, ‘恰当’, ‘ accurately’, ‘符合’, ‘合适’, ‘ properly’, ‘ adequately’, ‘准确’, ‘ accurate’ <br /> <span style="color: blue;">’ correctly’, ‘Correct’,’appropriate’, ‘ accurately’, ‘fit’, ‘appropriate’, ‘ properly’, ‘ adequately’, ‘accurate’, ‘ accurate’ </span></td>
     </tr>
   </tbody>
 </table>
 
 <p>Great, so we can localize where the tokens from logitlens are coming from.
-Well, what happens if we “turn off” these value vectors?</p>
+This gives us a hint that these value vectors, when activated, promote the likelihood of tokens like “success” or “incorrect” to show up.
+Let’s refer to value vectors similar to <code class="language-plaintext highlighter-rouge">W[0]</code> as “negative value vectors” and value vectors similar to <code class="language-plaintext highlighter-rouge">W[1]</code> as “positive value vectors”.</p>
+
+<p>To confirm that these value vectors are responsible for the tokens showing up in mid-layers, we can do an intervention.
+Namely, what happens if we “turn off” these value vectors?</p>
 
 <h2 id="interventions-on-value-vectors">Interventions on Value Vectors</h2>
 
@@ -281,7 +286,150 @@ In fact, the layer right before it (“model.layers.35.hook_resid_mid”), which
 
 <h3 id="wait-why-do-zeroing-out-value-vectors-similar-to-w0-help">Wait, why do zeroing out value vectors similar to <code class="language-plaintext highlighter-rouge">W[0]</code> help?</h3>
 
-<p>TODO</p>
+<p>Why would zeroing out negative value vectors (words encoding “Not found answer yet”) affect whether words like “success” show up in the mid layers?
+To answer this, we need to consider two things:</p>
+
+<p>(1) Activations in hidden states tend to be sparse. This means that most value vectors tend to be inactive during a forward pass.</p>
+
+<p>(2) Depending on the activation function being used (i.e., Silu), inactive value vectors can still have a non-zero effect on the output.
+In fact, consider the Silu curve below:</p>
+
+<p><img src="https://pytorch.org/docs/stable/_images/SiLU.png" style="width: 50%; height:auto;" />
+(Source: <a href="https://pytorch.org/docs/stable/generated/torch.nn.SiLU.html">Pytorch</a>)</p>
+
+<p>Often, inactive value vectors don’t have an activation value of 0 – they have a very small, negative value!
+This means that during the forward pass, if a value vector is inactive, it can end up getting multiplied by a negative value – and thus, flip directions, and get added to the next layer.</p>
+
+<p>With that being said, let’s revisit some of the negative value vectors.
+But before projecting them onto the vocabulary space, we can first multiply them by -1:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Layer, Index</th>
+      <th style="text-align: left">Nearest Neighbors (k = 10)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">MLP[27, 4971]</td>
+      <td style="text-align: left">’ inefficient’, ‘没能’, ‘inity’, ‘不方便’, ‘Danger’, ‘ disadvantage’, ‘不利于’, ‘还不如’, ‘ challenged’, ‘ขาด’ <br /> <span style="color: blue;">’ inefficient ‘, ‘failed ‘, ‘inity ‘, ‘inconvenient ‘, ‘Danger ‘, ‘ disadvantage ‘, ‘unfavorable ‘, ‘not as good as ‘, ‘ challenged ‘, ‘ขาด ‘ </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span style="color: red;">MLP[27, 4971] * -1 </span></td>
+      <td style="text-align: left">’ successfully’, ‘ successful’, ‘顺利’, ‘成功’, ‘删除成功’, ‘良好’, ‘ succesfully’, ‘.success’, ‘successfully’, ‘successful’ <br /> <span style="color: blue;"> ‘ successfully’, ‘ successful’, ‘smooth’, ‘successful’, ‘successful deletion’, ‘good’, ‘ succesfully’, ‘.success’, ‘successfully’, ‘successful’ </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">MLP[26, 744]</td>
+      <td style="text-align: left">‘未能’, ‘不够’, ‘ nicht’, ‘不像’, ‘达不到’, ‘不清楚’, ‘不具备’, ‘不到位’, ‘不符’, ‘还不’ <br /> <span style="color: blue;">‘failed’, ‘not enough’, ‘ nicht’, ‘not like’, ‘cannot reach’, ‘not clear’, ‘not available’, ‘not in place’, ‘not in line’, ‘not yet’ </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span style="color: red;">MLP[26, 744] * -1 </span></td>
+      <td style="text-align: left">‘慎’, ‘足’, ‘同等’, ‘ tend’, ‘ONDON’, ‘足以’, ‘均衡’, ‘谨慎’, ‘ equal’, ‘fast’ <br /> <span style="color: blue;"> ‘careful’, ‘sufficient’, ‘equal’, ‘tend’, ‘ONDON’, ‘enough’, ‘balanced’, ‘cautious’, ‘equal’, ‘fast’ </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">MLP[23, 7356]</td>
+      <td style="text-align: left">‘不利于’, ‘造成了’, ‘会造成’, ‘严重影响’, ‘禁止’, ‘ threaten’, ‘ threatens’, ‘不可避免’, ‘严重’, ‘ caution’ <br /> <span style="color: blue;">‘unfavorable’, ‘caused’, ‘will cause’, ‘seriously affect’, ‘prohibit’, ‘threaten’, ‘threatens’, ‘inevitable’, ‘serious’, ‘caution’ </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span style="color: red;">MLP[23, 7356] * -1 </span></td>
+      <td style="text-align: left">‘从容’, ‘ nhờ’, ‘rar’, ‘ grâce’, ‘ waive’, ‘就好了’, ‘无忧’, ‘ easier’, ‘有信心’, ‘kek’ <br /> <span style="color: blue;"> ‘calm’, ‘nhờ’, ‘rar’, ‘grâce’, ‘waive’, ‘just fine’, ‘worry-free’, ‘easier’, ‘confident’, ‘kek’ </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">MLP[26, 6619]</td>
+      <td style="text-align: left">‘缺乏’, ‘缺少’, ‘不方便’, ‘ lacks’, ‘难以’, ‘未能’, ‘无法’, ‘ lack’, ‘得不到’, ‘不符合’ <br /> <span style="color: blue;">‘lack’, ‘lack’, ‘inconvenience’, ‘lacks’, ‘difficult’, ‘failed’, ‘cannot’, ‘lack’, ‘cannot get’, ‘not in line with’ </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span style="color: red;">MLP[26, 6619] * -1 </span></td>
+      <td style="text-align: left">‘不仅能’, ‘不错的’, ‘不错’, ‘具有良好’, ‘总算’, ‘这样才能’, ‘有足够的’, ‘良好’, ‘不仅可以’, ‘ sane’ <br /> <span style="color: blue;"> ‘not only can’, ‘good’, ‘good’, ‘have good’, ‘finally’, ‘only in this way’, ‘have enough’, ‘good’, ‘not only can’, ‘sane’ </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">MLP[27, 9766]</td>
+      <td style="text-align: left">‘是不可能’, ‘ neither’, ‘看不到’, ‘不存在’, ‘是不会’, ‘ nowhere’, ‘ nothing’, ‘ none’, ‘没有任何’, ‘都没有’ <br /> <span style="color: blue;">‘It’s impossible’, ‘neither’, ‘can’t see’, ‘doesn’t exist’, ‘will never’, ‘ nowhere’, ‘ nothing’, ‘ none’, ‘nothing’, ‘nothing’ </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span style="color: red;">MLP[27, 9766] * -1 </span></td>
+      <td style="text-align: left">‘might’, ‘ maybe’, ‘may’, ‘maybe’, ‘ might’, ‘Maybe’, ‘有时候’, ‘部分地区’, ‘ may’, ‘.some’ <br /> <span style="color: blue;"> ‘might’, ‘ maybe’, ‘may’, ‘maybe’, ‘ might’, ‘Maybe’, ‘Sometimes’, ‘Some areas’, ‘ may’, ‘.some’ </span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>It turns out the antipodes of <em>some</em> of the negative value vectors are encoding words you would expect from positive value vectors!
+So not only are we seeing positive value vectors being activated to promote tokens like (“success”), but inactive negative value vectors also get flipped to promote similar tokens.</p>
+
+<p>Same thing with flipping positive value vectors:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Layer, Index</th>
+      <th style="text-align: left">Nearest Neighbors (k = 10)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">MLP[30, 8233]</td>
+      <td style="text-align: left">’ correctly’, ‘正确’, ‘恰当’, ‘ accurately’, ‘符合’, ‘合适’, ‘ properly’, ‘ adequately’, ‘准确’, ‘ accurate’ <br /> <span style="color: blue;">’ correctly’, ‘Correct’,’appropriate’, ‘ accurately’, ‘fit’, ‘appropriate’, ‘ properly’, ‘ adequately’, ‘accurate’, ‘ accurate’ </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span style="color: red;">MLP[30, 8233] * -1 </span></td>
+      <td style="text-align: left">’ wrong’, ‘不良’, ‘ incorrect’, ‘wrong’, ‘ invalid’, ‘ bad’, ‘ inappropriate’, ‘invalid’, ‘不合格’, ‘不当’ <br /> <span style="color: blue;"> ‘wrong’, ‘bad’, ‘incorrect’, ‘wrong’, ‘invalid’, ‘bad’, ‘inappropriate’, ‘invalid’, ‘unqualified’, ‘inappropriate’ </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">MLP[26, 6475]</td>
+      <td style="text-align: left">‘倒是’, ‘不失’, ‘适度’, ‘successful’, ‘.success’, ‘却是’, ‘ successful’, ‘没事’, ‘完好’, ‘还不错’ <br /> <span style="color: blue;">‘It is’, ‘not lost’, ‘moderate’, ‘successful’, ‘.success’, ‘but it is’, ‘ successful’, ‘nothing’, ‘intact’, ‘not bad’ </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span style="color: red;">MLP[26, 6475] * -1 </span></td>
+      <td style="text-align: left">’ also’, ‘ likewise’, ‘Also’, ‘也同样’, ‘ тоже’, ‘ também’, ‘也非常’, ‘ également’, ‘ ALSO’, ‘ Also’ <br /> <span style="color: blue;">’ also’, ‘ likewise’, ‘ Also’, ‘ also’, ‘ тоже’, ‘ também’, ‘ also very’, ‘ également’, ‘ ALSO’, ‘ Also’ </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">MLP[29, 6676]</td>
+      <td style="text-align: left">’ yes’, ‘ Yes’, ‘Bindable’, ‘ exactly’, ‘Yes’, ‘“Yes’, ‘yes’, ‘ Yep’, ‘ Exactly’, ‘ included’</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span style="color: red;">MLP[29, 6676] * -1 </span></td>
+      <td style="text-align: left">‘都不’, ‘不太’, ‘ neither’, ‘不予’, ‘没见过’, ‘都不是’, ‘不曾’, ‘不开’, ‘不具备’, ‘都没有’ <br /> <span style="color: blue;"> ‘neither’, ‘not quite’, ‘neither’, ‘not given’, ‘never seen’, ‘neither’, ‘never’, ‘not open’, ‘not possess’, ‘none’ </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">MLP[25, 1124]</td>
+      <td style="text-align: left">‘ELY’, ‘怫’, ‘yes’, ‘ Awesome’, ‘itchen’, ‘没错’, ‘etur’, ‘即时发生’, ‘ños’, ‘emade’ <br /> <span style="color: blue;">‘ELY’, ‘怫’, ‘yes’, ‘ Awesome’, ‘itchen’, ‘That’s right’, ‘etur’, ‘Immediate’, ‘ños’, ‘emade’] </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span style="color: red;">MLP[25, 1124] * -1 </span></td>
+      <td style="text-align: left">‘根本’, ‘Prom’, ‘ Prom’, ‘)NULL’, ‘”&gt;×&lt;’, ‘都不’, ‘丝毫’, ‘ari’, ‘ never’, ‘抑制’ <br /> <span style="color: blue;"> ‘at all’, ‘Prom’, ‘ Prom’, ‘)NULL’, ‘”&gt;×&lt;’, ‘neither’, ‘slightly’, ‘ari’, ‘never’, ‘restrain’ </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">MLP[27, 10388]</td>
+      <td style="text-align: left">’ mirac’, ‘乐观’, ‘安然’, ‘ Relief’, ‘幸’, ‘.isSuccess’, ‘.SUCCESS’, ‘ favorable’, ‘优点’, ‘顺利’ <br /> <span style="color: blue;">’ mirac ‘, ‘ Optimistic ‘, ‘ Safe ‘, ‘ Relief ‘, ‘ Luck ‘, ‘.isSuccess ‘, ‘.SUCCESS ‘, ‘ favorable ‘, ‘ Advantages ‘, ‘ Smooth ‘ </span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><span style="color: red;">MLP[27, 10388] * -1 </span></td>
+      <td style="text-align: left">‘失败’, ‘ failure’, ‘不良’, ‘不利’, ‘糟糕’, ‘失误’, ‘ failures’, ‘ bad’, ‘失’, ‘失望’ <br /> <span style="color: blue;"> ‘failure’, ‘ failure’, ‘bad’, ‘unfavorable’, ‘bad’, ‘mistake’, ‘ failures’, ‘ bad’, ‘loss’, ‘disappointment’ </span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Again, sometimes (but not always!) the antipodes of value vectors encode the semantically opposite words.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>So we see that value vectors play some role in the model generating “solution tokens”.
+However, is it part of verification?</p>
+
+<p>Rather, there seems to be some representation prior to these value vectors that are activating them in the first place.
+The activation of value vectors seem to reinforce the model’s decision to predict “this” or “not”, and so we might characterize them as being a component of verification.
+However, we don’t have the full story quite yet.</p>
+
+<p>How does the model know when to activate these value vectors?</p>
+
+<p>The answer is likely in the attention heads, which I plan to investigate next.</p>
+
+<h1 id="collaborating">Collaborating</h1>
+
+<p>I would love to hear your thoughts!
+Please see the <a href="https://github.com/ARBORproject/arborproject.github.io/discussions/6">ARBOR page</a> for discussions.</p>
+
 
   </div></div>
 
