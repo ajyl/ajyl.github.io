@@ -74,3 +74,6 @@ scholar:
   join_strings: true
   bibtex_filters:
 
+markdown: kramdown
+kramdown:
+  math_engine: katex
