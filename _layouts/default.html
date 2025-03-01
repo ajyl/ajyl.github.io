@@ -3,6 +3,9 @@
 
 <head>
   {%- include head.html -%}
+  {% raw %}{% if jekyll.environment == 'production' and site.google_analytics %}{% endraw %}
+  {% include analytics.html %}
+  {% endif %}{% endraw %}
 </head>
 
 {%- if site.plainwhite.condensed_mobile contains page.layout -%}
