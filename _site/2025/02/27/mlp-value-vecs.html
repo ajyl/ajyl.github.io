@@ -255,7 +255,7 @@ Namely, what happens if we “turn off” these value vectors?</p>
 <p>Specifically, we can look at value vectors in the second half of the model (layers 18~36).
 In each of those layers, let’s take $k$ value vectors with the highest cosine similarity to <code class="language-plaintext highlighter-rouge">W[1]</code>, and zero them out.</p>
 
-<p>Below is what happens when $k = 50% (and therefore we’re zeroing out 50 * 18 = 900 out of 396288 (11008 * 36) value vectors. That’s about 0.2% of the total value vectors.):</p>
+<p>Below is what happens when $k = 50$ (and therefore we’re zeroing out 50 * 18 = 900 out of 396288 (11008 * 36) value vectors. That’s about 0.2% of the total value vectors.):</p>
 
 <p>(<a href="../../../assets/blogs/mlp_value_vecs/logitlens_interv_pos_value_vecs_50.html">Interactive html link</a>)</p>
 
@@ -265,8 +265,8 @@ In each of those layers, let’s take $k$ value vectors with the highest cosine 
 
 <p>Though we can do this for larger values of $k$, it didn’t make much of a difference.</p>
 
-<p>Interestingly, we can further zero out value vectors that are also similar to <code class="language-plaintext highlighter-rouge">W[0]</code> (in addition to <code class="language-plaintext highlighter-rouge">W[1]</code>).
-So now we’re looking at zeroing out $k = 50$ value vectors most similar to <code class="language-plaintext highlighter-rouge">W[0]</code> and $k = 50$ value vectors most similar to <code class="language-plaintext highlighter-rouge">W[1]</code>:</p>
+<p>Interestingly, we can further zero out value vectors that are also similar to <code class="language-plaintext highlighter-rouge">W[0]</code> (encoding “Not Solved”), in addition to <code class="language-plaintext highlighter-rouge">W[1]</code> (encoding “Solved”)).
+So now we’re looking at zeroing out a total of 100 value vectors per layer.</p>
 
 <p>(<a href="../../../assets/blogs/mlp_value_vecs/logitlens_interv_pos_and_neg_value_vecs_50.html">Interactive html link</a>)</p>
 
@@ -294,7 +294,9 @@ In fact, consider the Silu curve below:</p>
 This means that during the forward pass, if a value vector is inactive, it can end up getting multiplied by a negative value – and thus, flip directions, and get added to the next layer.</p>
 
 <p>With that being said, let’s revisit some of the negative value vectors.
-But before projecting them onto the vocabulary space, we can first multiply them by -1:</p>
+But before projecting them onto the vocabulary space, we can first multiply them by -1.</p>
+
+<p>Below, I’ve marked the original value vectors in black font (e.g., MLP[27, 4971]), while the same value vector multiplied by -1 (e.g., MLP[27, 4971] * -1) are in red.</p>
 
 <table>
   <thead>
@@ -405,14 +407,18 @@ So not only are we seeing positive value vectors being activated to promote toke
 
 <p>Again, sometimes (but not always!) the antipodes of value vectors encode the semantically opposite words.</p>
 
-<h1 id="conclusion">Conclusion</h1>
+<h1 id="takeaways">Takeaways</h1>
+
+<p>It seems that when the model finds the solution, it activates positive value vectors while negative value vectors stay inactive.
+However, inactive value vectors can get scaled negatively (because of SiLU/GeLU) and flipped to promote the opposite direction, and vice versa for when the model hasn’t found a solution.</p>
 
 <p>So we see that value vectors play some role in the model generating “solution tokens”.
 However, is it part of verification?</p>
 
 <p>Rather, there seems to be some representation prior to these value vectors that are activating them in the first place.
-The activation of value vectors seem to reinforce the model’s decision to predict “this” or “not”, and so we might characterize them as being a component of verification.
-However, we don’t have the full story quite yet.</p>
+I think there’s still questions on (1) whether the same representation is being used for mid-layer solution tokens and final predictions, and (2) Whether value vectors play a necessary role in verification.
+To me, the activation of value vectors seem to reinforce the model’s decision to predict “this” or “not”, and so we might characterize them as being a component of verification, but perhaps not a requirement.
+TBD.</p>
 
 <p>How does the model know when to activate these value vectors?</p>
 

@@ -134,7 +134,7 @@ During the forward pass, we can zero out the value vectors that we think might b
 Specifically, we can look at value vectors in the second half of the model (layers 18~36).
 In each of those layers, let's take $k$ value vectors with the highest cosine similarity to `W[1]`, and zero them out.
 
-Below is what happens when $k = 50% (and therefore we're zeroing out 50 * 18 = 900 out of 396288 (11008 * 36) value vectors. That's about 0.2% of the total value vectors.):
+Below is what happens when $k = 50$ (and therefore we're zeroing out 50 * 18 = 900 out of 396288 (11008 * 36) value vectors. That's about 0.2% of the total value vectors.):
 
 ([Interactive html link](../../../assets/blogs/mlp_value_vecs/logitlens_interv_pos_value_vecs_50.html))
 
@@ -144,8 +144,8 @@ From this, we can see that while the model still predicts "this", the likelihood
 
 Though we can do this for larger values of $k$, it didn't make much of a difference.
 
-Interestingly, we can further zero out value vectors that are also similar to `W[0]` (in addition to `W[1]`).
-So now we're looking at zeroing out $k = 50$ value vectors most similar to `W[0]` and $k = 50$ value vectors most similar to `W[1]`:
+Interestingly, we can further zero out value vectors that are also similar to `W[0]` (encoding "Not Solved"), in addition to `W[1]` (encoding "Solved")).
+So now we're looking at zeroing out a total of 100 value vectors per layer.
 
 ([Interactive html link](../../../assets/blogs/mlp_value_vecs/logitlens_interv_pos_and_neg_value_vecs_50.html))
 
@@ -174,7 +174,10 @@ Often, inactive value vectors don't have an activation value of 0 -- they have a
 This means that during the forward pass, if a value vector is inactive, it can end up getting multiplied by a negative value -- and thus, flip directions, and get added to the next layer.
 
 With that being said, let's revisit some of the negative value vectors.
-But before projecting them onto the vocabulary space, we can first multiply them by -1:
+But before projecting them onto the vocabulary space, we can first multiply them by -1.
+
+Below, I've marked the original value vectors in black font (e.g., MLP[27, 4971]), while the same value vector multiplied by -1 (e.g., MLP[27, 4971] * -1) are in red.
+
 
 
 | Layer, Index  | Nearest Neighbors (k = 10) |
@@ -211,14 +214,20 @@ Same thing with flipping positive value vectors:
 Again, sometimes (but not always!) the antipodes of value vectors encode the semantically opposite words.
 
 
-# Conclusion
+
+
+# Takeaways
+
+It seems that when the model finds the solution, it activates positive value vectors while negative value vectors stay inactive.
+However, inactive value vectors can get scaled negatively (because of SiLU/GeLU) and flipped to promote the opposite direction, and vice versa for when the model hasn't found a solution.
 
 So we see that value vectors play some role in the model generating "solution tokens".
 However, is it part of verification?
 
 Rather, there seems to be some representation prior to these value vectors that are activating them in the first place.
-The activation of value vectors seem to reinforce the model's decision to predict "this" or "not", and so we might characterize them as being a component of verification.
-However, we don't have the full story quite yet.
+I think there's still questions on (1) whether the same representation is being used for mid-layer solution tokens and final predictions, and (2) Whether value vectors play a necessary role in verification.
+To me, the activation of value vectors seem to reinforce the model's decision to predict "this" or "not", and so we might characterize them as being a component of verification, but perhaps not a requirement.
+TBD.
 
 How does the model know when to activate these value vectors?
 
@@ -229,7 +238,4 @@ The answer is likely in the attention heads, which I plan to investigate next.
 
 I would love to hear your thoughts!
 Please see the [ARBOR page](https://github.com/ARBORproject/arborproject.github.io/discussions/6) for discussions. 
-
-
-
 
