@@ -57,7 +57,7 @@ plainwhite:
 theme: plainwhite
 remote_theme: samarsault/plainwhite-jekyll
 
-include: ["_pages"]
+#include: ["_pages", "_posts"]
 
 scholar:
   last_name: [Lee]
