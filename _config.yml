@@ -20,9 +20,9 @@ sass:
 plainwhite:
   name: Andrew Lee
   tagline: About Me
-  date_format: "%b %-d, %Y"
+  #date_format: "%b %-d, %Y"
   sitemap: false # set to true to generate sitemap.xml content
-  search: false # set to true to enable searchbar
+  search: true # set to true to enable searchbar
   dark_mode: false # set to true to add dark mode toggle
   portfolio_image: "assets/prof_pic.jpg" # the path from the base directory of the site to the image to display (no / at the start)
   html_lang: "en" # set the lang attribute of the <html> tag for the pages. See here for a list of codes: https://www.w3schools.com/tags/ref_country_codes.asp
@@ -58,21 +58,6 @@ theme: plainwhite
 remote_theme: samarsault/plainwhite-jekyll
 
 #include: ["_pages", "_posts"]
-
-scholar:
-  last_name: [Lee]
-  first_name: [Andrew]
-
-  style: apa
-  locale: en
-
-  source: /_bibliography/
-  bibliography: papers.bib
-  bibliography_template: bib
-
-  replace_strings: true
-  join_strings: true
-  bibtex_filters:
 
 markdown: kramdown
 kramdown:
