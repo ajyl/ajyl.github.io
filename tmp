@@ -1,0 +1,4 @@
+
+  {% raw %}{% if site.google_analytics %}{% endraw %}
+  {% include analytics.html %}
+  {% endif %}{% endraw %}
