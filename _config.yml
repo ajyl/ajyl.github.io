@@ -6,7 +6,7 @@ plugins:
 
 title: Andrew Lee
 author: GitHub User
-email: ajyl@umich.edu
+email: ajyl@umich.edu2
 description: > # this means to ignore newlines until "show_exerpts:"
   Personal website for Andrew Lee
 show_excerpts: true # set to true to show excerpts on the homepage

@@ -1,5 +1,5 @@
 Build:
-`JEKYLL_ENV=production jekyll build --source _pages --config _config.yml`
+`JEKYLL_ENV=production bundle exec jekyll build --source _pages --config _config.yml`
 
 
 Deploy:
