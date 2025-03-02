@@ -6,12 +6,13 @@ plugins:
 
 title: Andrew Lee
 author: GitHub User
-email: ajyl@umich.edu2
+email: ajyl@umich.edu
 description: > # this means to ignore newlines until "show_exerpts:"
   Personal website for Andrew Lee
 show_excerpts: true # set to true to show excerpts on the homepage
 
 basedir: "_pages"
+
 
 # Minima date format
 # refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
@@ -55,12 +56,27 @@ plainwhite:
 
 # Build settings
 theme: plainwhite
-remote_theme: samarsault/plainwhite-jekyll
+#remote_theme: samarsault/plainwhite-jekyll
 
-#include: ["_pages", "_posts"]
+include:
+  - _pages
+  - _posts
+exclude:
+  - "rubygems-*"
+  - "*.gemspec"
+  - "*.txt"
+  - Rakefile
+  - README
+  - "*.json"
 
 markdown: kramdown
 kramdown:
   math_engine: katex
 
 google_analytics: G-H0YMDK3ZVN
+future: true
+
+collections_dir: .
+collections:
+  posts:
+    output: true

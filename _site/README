@@ -1,6 +1,0 @@
-Build:
-`JEKYLL_ENV=production bundle exec jekyll build --source _pages --config _config.yml`
-
-
-Deploy:
-`rake commit_deploy`
