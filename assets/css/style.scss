@@ -1,13 +1,13 @@
 ---
 ---
 
-@use "plain";
+@import "plain";
 
 {% if site.plainwhite.search %}
-  @use "search";
+  @import "search";
 {% endif %}
 
 {%- if site.plainwhite.dark_mode -%}
-  @use "toggle";
-  @use "dark";
+  @import "toggle";
+  @import "dark";
 {%- endif -%}

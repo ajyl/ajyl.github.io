@@ -1,6 +1,6 @@
-@use "ext/fonts";
-@use "ext/normalize";
-@use "syntax";
+@import "ext/fonts";
+@import "ext/normalize";
+@import "syntax";
 
 $linkColor: #0a59b0;
 $mobileW: 768px;
