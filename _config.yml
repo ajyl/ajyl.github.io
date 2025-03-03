@@ -1,6 +1,5 @@
 plugins:
     - jekyll-seo-tag
-    - jekyll-scholar
     - jekyll-redirect-from
     - jekyll-scholar
 
@@ -76,7 +75,5 @@ kramdown:
 google_analytics: G-H0YMDK3ZVN
 future: true
 
-#collections_dir: .
-#collections:
-#  _posts:
-#    output: true
+scholar:
+  bibliography_template: bib
