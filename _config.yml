@@ -23,7 +23,7 @@ plainwhite:
   tagline: About Me
   #date_format: "%b %-d, %Y"
   sitemap: false # set to true to generate sitemap.xml content
-  search: true # set to true to enable searchbar
+  search: false # set to true to enable searchbar
   dark_mode: false # set to true to add dark mode toggle
   portfolio_image: "assets/prof_pic.jpg" # the path from the base directory of the site to the image to display (no / at the start)
   html_lang: "en" # set the lang attribute of the <html> tag for the pages. See here for a list of codes: https://www.w3schools.com/tags/ref_country_codes.asp
@@ -60,7 +60,7 @@ theme: plainwhite
 
 include:
   - _pages
-  - _posts
+#  - _posts
 exclude:
   - "rubygems-*"
   - "*.gemspec"
@@ -76,7 +76,7 @@ kramdown:
 google_analytics: G-H0YMDK3ZVN
 future: true
 
-collections_dir: .
-collections:
-  posts:
-    output: true
+#collections_dir: .
+#collections:
+#  _posts:
+#    output: true

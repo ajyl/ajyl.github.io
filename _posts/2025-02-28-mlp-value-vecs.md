@@ -2,6 +2,7 @@
 layout: post
 title: 'Understanding the Role of MLP "Value Vectors"'
 date: 2025-02-28 01:00:00 -0000
+categories: Reasoning
 ---
 
 # Context
