@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Understanding the Role of Attention in Verification'
+title: 'The Role of Attention for TinyZero Countdown'
 date: 2025-03-18 23:00:00 -0000
 published: true
 categories: Reasoning
