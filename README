@@ -5,3 +5,7 @@ JEKYLL_ENV=production bundle exec jekyll build --verbose --trace
 
 Deploy:
 rake commit_deploy
+
+
+Local serve:
+bundle exec jekyll serve
