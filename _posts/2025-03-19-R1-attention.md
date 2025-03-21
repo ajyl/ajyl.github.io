@@ -10,14 +10,14 @@ categories: Reasoning
 # Context
 
 This is Part III of investigating how R1 does verifications.
-See [Part I](https://ajyl.github.io/2025/02/16/steering-R1.html) and [Part II](https://ajyl.github.io/reasoning/2025/02/27/mlp-value-vecs.html).
+See [Part I](https://ajyl.github.io/reasoning/2025/02/16/steering-R1.html) and [Part II](https://ajyl.github.io/reasoning/2025/02/27/mlp-value-vecs.html).
 
 
-## (Recap from [Part I](https://ajyl.github.io/2025/02/16/steering-R1.html)) Model:
+## (Recap from [Part I](https://ajyl.github.io/reasoning/2025/02/16/steering-R1.html)) Model:
 
 As a reminder, we are working with a model trained on a specific reasoning task (a countdown task).
 Given 3 or 4 "operand" numbers (ex: 67, 90, 60, 12) and a target number (ex: 49), R1 needs to find an arithmetic combination that produces the target number.
-See [Part I](https://ajyl.github.io/2025/02/16/steering-R1.html) for details.
+See [Part I](https://ajyl.github.io/reasoning/2025/02/16/steering-R1.html) for details.
 
 Luckily, this means we know the exact token to look for when the model has found a solution.
 Namely, the model always outputs in a structured format:

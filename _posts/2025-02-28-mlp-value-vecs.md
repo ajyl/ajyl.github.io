@@ -8,7 +8,7 @@ categories: Reasoning
 # Context
 
 This is Part II of investigating how R1 does verifications.
-For additional context, see [Part I](https://ajyl.github.io/2025/02/16/steering-R1.html).
+For additional context, see [Part I](https://ajyl.github.io/reasoning/2025/02/16/steering-R1.html).
 
 # How does R1 know it's found a solution?
 
@@ -20,11 +20,11 @@ Currently I am working with a hypothesis that R1 has some internal representatio
 Here I present some of my thoughts on the latter part -- how "solution tokens" are generated.
 
 
-## (Recap from [Part I](https://ajyl.github.io/2025/02/16/steering-R1.html)) Model:
+## (Recap from [Part I](https://ajyl.github.io/reasoning/2025/02/16/steering-R1.html)) Model:
 
 As a reminder, we are working with a model trained on a specific reasoning task (a countdown task).
 Given 3 or 4 "operand" numbers (ex: 67, 90, 60, 12) and a target number (ex: 49), R1 needs to find an arithmetic combination that produces the target number.
-See [Part I](https://ajyl.github.io/2025/02/16/steering-R1.html) for details.
+See [Part I](https://ajyl.github.io/reasoning/2025/02/16/steering-R1.html) for details.
 
 Luckily, this means we know the exact token to look for when the model has found a solution.
 Namely, the model always outputs in a structured format:
@@ -83,7 +83,7 @@ So it turns out that you can also project your value vectors onto the token embe
 But which value vectors should we look at? In the case of Qwen2.5-3B, we have 36 layers, each with 11008 value vectors.
 We can't examine all of them.
 
-Instead, we can rely on our probe (see [Part I](https://ajyl.github.io/2025/02/16/steering-R1.html)) to guide us.
+Instead, we can rely on our probe (see [Part I](https://ajyl.github.io/reasoning/2025/02/16/steering-R1.html)) to guide us.
 Namely, we can think of probe `W[0]` as encoding "This is not correct" and `W[1]` as "This is correct".
 Luckily, these probes are also in $R^d$.
 So we can simply take the cosine similarity scores between each of our value vectors and our probes, and look at the ones with highest similarity.

@@ -91,13 +91,13 @@
     <h1 id="context">Context</h1>
 
 <p>This is Part III of investigating how R1 does verifications.
-See <a href="https://ajyl.github.io/2025/02/16/steering-R1.html">Part I</a> and <a href="https://ajyl.github.io/reasoning/2025/02/27/mlp-value-vecs.html">Part II</a>.</p>
+See <a href="https://ajyl.github.io/reasoning/2025/02/16/steering-R1.html">Part I</a> and <a href="https://ajyl.github.io/reasoning/2025/02/27/mlp-value-vecs.html">Part II</a>.</p>
 
-<h2 id="recap-from-part-i-model">(Recap from <a href="https://ajyl.github.io/2025/02/16/steering-R1.html">Part I</a>) Model:</h2>
+<h2 id="recap-from-part-i-model">(Recap from <a href="https://ajyl.github.io/reasoning/2025/02/16/steering-R1.html">Part I</a>) Model:</h2>
 
 <p>As a reminder, we are working with a model trained on a specific reasoning task (a countdown task).
 Given 3 or 4 “operand” numbers (ex: 67, 90, 60, 12) and a target number (ex: 49), R1 needs to find an arithmetic combination that produces the target number.
-See <a href="https://ajyl.github.io/2025/02/16/steering-R1.html">Part I</a> for details.</p>
+See <a href="https://ajyl.github.io/reasoning/2025/02/16/steering-R1.html">Part I</a> for details.</p>
 
 <p>Luckily, this means we know the exact token to look for when the model has found a solution.
 Namely, the model always outputs in a structured format:</p>

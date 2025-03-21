@@ -91,7 +91,7 @@
     <h1 id="context">Context</h1>
 
 <p>This is Part II of investigating how R1 does verifications.
-For additional context, see <a href="https://ajyl.github.io/2025/02/16/steering-R1.html">Part I</a>.</p>
+For additional context, see <a href="https://ajyl.github.io/reasoning/2025/02/16/steering-R1.html">Part I</a>.</p>
 
 <h1 id="how-does-r1-know-its-found-a-solution">How does R1 know it’s found a solution?</h1>
 
@@ -102,11 +102,11 @@ How does it represent the solution, or even the fact that it has found a solutio
 
 <p>Here I present some of my thoughts on the latter part – how “solution tokens” are generated.</p>
 
-<h2 id="recap-from-part-i-model">(Recap from <a href="https://ajyl.github.io/2025/02/16/steering-R1.html">Part I</a>) Model:</h2>
+<h2 id="recap-from-part-i-model">(Recap from <a href="https://ajyl.github.io/reasoning/2025/02/16/steering-R1.html">Part I</a>) Model:</h2>
 
 <p>As a reminder, we are working with a model trained on a specific reasoning task (a countdown task).
 Given 3 or 4 “operand” numbers (ex: 67, 90, 60, 12) and a target number (ex: 49), R1 needs to find an arithmetic combination that produces the target number.
-See <a href="https://ajyl.github.io/2025/02/16/steering-R1.html">Part I</a> for details.</p>
+See <a href="https://ajyl.github.io/reasoning/2025/02/16/steering-R1.html">Part I</a> for details.</p>
 
 <p>Luckily, this means we know the exact token to look for when the model has found a solution.
 Namely, the model always outputs in a structured format:</p>
@@ -159,7 +159,7 @@ Instead of $ MLP(x) = \sigma(W_kx)W_v $, we can express MLPs as $ MLP(x) = \sum_
 <p>But which value vectors should we look at? In the case of Qwen2.5-3B, we have 36 layers, each with 11008 value vectors.
 We can’t examine all of them.</p>
 
-<p>Instead, we can rely on our probe (see <a href="https://ajyl.github.io/2025/02/16/steering-R1.html">Part I</a>) to guide us.
+<p>Instead, we can rely on our probe (see <a href="https://ajyl.github.io/reasoning/2025/02/16/steering-R1.html">Part I</a>) to guide us.
 Namely, we can think of probe <code class="language-plaintext highlighter-rouge">W[0]</code> as encoding “This is not correct” and <code class="language-plaintext highlighter-rouge">W[1]</code> as “This is correct”.
 Luckily, these probes are also in $R^d$.
 So we can simply take the cosine similarity scores between each of our value vectors and our probes, and look at the ones with highest similarity.
