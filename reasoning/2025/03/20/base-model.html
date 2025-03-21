@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+<title>Comparing Verification of R1 and Base Models</title>
+ <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        inlineMath: [['$','$']]
+      }
+    });
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> 
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H0YMDK3ZVN"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-H0YMDK3ZVN');
+</script>
+
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/">
+        <img src="/assets/prof_pic.jpg" alt="Andrew Lee" />
+      </a>
+      <h2 id="title">
+        <a href="/">Andrew Lee</a>
+      </h2>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/ajyl" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://scholar.google.com/citations?user=oQiCjnwAAAAJ" target="_blank">
+          <li>
+            <i class="icon-google-scholar"></i>
+          </li>
+        </a><a href="https://twitter.com/a_jy_l" target="_blank">
+          <li>
+            <i class="icon-twitter-squared"></i>
+          </li>
+        </a><a href="mailto:ajyl@umich.edu" target="_blank">
+          <li>
+            <i class="icon-mail-alt"></i>
+          </li>
+        </a></ul><nav class="navigation about-footer condensed">
+        <ul>
+          
+          <li>
+            <a href="/about">About</a>
+          </li>
+          
+          <li>
+            <a href="/publications">Publications</a>
+          </li>
+          
+          <li>
+            <a href="/blog">Blog</a>
+          </li>
+          
+          <li>
+            <a href="/assets/cv.pdf">CV</a>
+          </li>
+        </ul>
+      </nav><p class="about-footer condensed">&copy;
+        2025</p>
+      
+    </section>
+    <section class="content">
+      <div class="post-container">
+  <a class="post-link" href="/reasoning/2025/03/20/base-model.html">
+    <h2 class="post-title">Comparing Verification of R1 and Base Models</h2>
+  </a>
+  <div class="post-meta">
+    <div class="post-date"><i class="icon-calendar"></i>Mar 20, 2025</div><ul class="post-categories"><li>Reasoning</li></ul></div>
+  <div class="post">
+    <h1 id="context">Context</h1>
+
+<p>This is Part IV of investigating how R1 does verifications.
+Namely, I will compare the weights and mechanism of our R1 model with its base model counterpart.</p>
+
+<p>See previous posts:</p>
+<ul>
+  <li><a href="https://ajyl.github.io/reasoning/2025/02/16/steering-R1.html">Part I</a></li>
+  <li><a href="https://ajyl.github.io/reasoning/2025/02/27/mlp-value-vecs.html">Part II</a></li>
+  <li><a href="https://ajyl.github.io/reasoning/2025/03/18/R1-attention.html">Part III</a></li>
+</ul>
+
+<h2 id="comparing-weights-of-r1-vs-base-model">Comparing Weights of R1 vs. Base Model</h2>
+
+<p>Previously, we found some relevant weights for verification in our TinyZero-R1.
+These include MLP value vectors (see <a href="https://ajyl.github.io/reasoning/2025/02/27/mlp-value-vecs.html">Part II</a>) and attention heads (see <a href="https://ajyl.github.io/reasoning/2025/03/18/R1-attention.html">Part III</a>).
+How do these weights compare to the base model?</p>
+
+<p>We can simply check cosine-similarity scores and norms of these weights.
+Interestingly, the <strong>cosine similarity scores of these weights are always 1</strong>.
+Meanwhile, the change in norms is usually less than 1e-5.
+This minimal shifts in weights have been observed before in DPO models (<a href="https://arxiv.org/abs/2401.01967">Lee at al., ICML 2024</a>).</p>
+
+<p>This suggests that we should expect to see a similar verification mechanism in our base model as well.</p>
+
+<h2 id="verifying-verification-mechanism-in-base-model">Verifying Verification Mechanism in Base Model.</h2>
+
+<p>So previously we found attention heads doing verification.
+Let’s see if turning off those attention heads also affect the base model in the same way.
+As a reminder, below are the attention heads we turned off:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>L3 H13, L4 H5, L4 H0, L5 H9, L5 H14, L10 H0, L10 H5, L11 H8,
+L12 H3, L13 H6, L13 H3, L15 H8, L15 H4, L17 H14, L17 H13, L17 H11,
+L17 H10, L17 H9, L17 H3, L17 H1, L19 H13, L19 H8, L21 H7, L21 H14,
+L21 H2, L22 H14, L22 H12, L25 H14, L25 H11,
+</code></pre></div></div>
+
+<p>We’re turning off 29 (out of 576) attention heads.</p>
+
+<p>With the base model (Qwen2.5-3B), we can simply take CoT attempts from the R1 model and ask the base model to verify them.
+Namely, we’ll prompt the model and ask it to answer if the CoT is correct or not using only “Yes” or “No”.
+We can then compare the model’s (normalized) probability of outputting each token before and after our interventions.</p>
+
+<p>Here’s an example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A conversation between User and Assistant.
+The User is given a set of numbers [79 17 60] to create an equation that equals 36.
+The User can use basic arithmetic operations (+, -, *, /) and each number can only be used once.
+The following is the User's attempt:
+79 - 60 + 17 = 19 + 17 = 36
+Your job as an Assistant is to verify if this attempt is correct or not.
+Is the User's attempt correct? Answer only in 'Yes' or 'No'.
+Assistant: Let me think about this step by step.
+The User is given the set of numbers [79 17 60] and must create an equation that equals 36.
+The User's attempt is 79 - 60 + 17 = 19 + 17 = 36. Therefore, the final answer is
+</code></pre></div></div>
+
+<p>Below are the results before and after our interventions:</p>
+
+<p><img src="/assets/blogs/base_vs_r1/base_model_intervene.png" style="width: 80%; height:auto;" /></p>
+
+<p>Great, so all of this suggests that the verification mechanism in the base model is the same as in the R1 model.</p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>Again, the biggest question that arises is, what about problems where the correct answer is not in the context?
+So one possible next step is to design another task and train TinyZero R1 on it (hopefully we see the model converge to a nice structure again).</p>
+
+<h2 id="collaboration">Collaboration</h2>
+
+<p>Please see the <a href="https://github.com/ARBORproject/arborproject.github.io/discussions/6">ARBOR page</a> for discussions. 
+In particular, we have weekly meetings that are open for anyone to join.</p>
+
+<p>My code and experiments can be found <a href="https://github.com/ajyl/verify_circuit">here</a>.</p>
+
+
+  </div></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/ajyl" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://scholar.google.com/citations?user=oQiCjnwAAAAJ" target="_blank">
+          <li>
+            <i class="icon-google-scholar"></i>
+          </li>
+        </a><a href="https://twitter.com/a_jy_l" target="_blank">
+          <li>
+            <i class="icon-twitter-squared"></i>
+          </li>
+        </a><a href="mailto:ajyl@umich.edu" target="_blank">
+          <li>
+            <i class="icon-mail-alt"></i>
+          </li>
+        </a></ul><nav class="navigation about-footer condensed">
+        <ul>
+          
+          <li>
+            <a href="/about">About</a>
+          </li>
+          
+          <li>
+            <a href="/publications">Publications</a>
+          </li>
+          
+          <li>
+            <a href="/blog">Blog</a>
+          </li>
+          
+          <li>
+            <a href="/assets/cv.pdf">CV</a>
+          </li>
+        </ul>
+      </nav><p class="about-footer condensed">&copy;
+        2025</p>
+      
+    </footer>
+  </main>
+</body>
+
+</html>
