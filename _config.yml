@@ -43,7 +43,7 @@ plainwhite:
   # generate social links in footer
   social_links:
     googlescholar: oQiCjnwAAAAJ
-    twitter: a_jy_l
+    #twitter: a_jy_l
     github: ajyl
     email: ajyl@umich.edu
 
