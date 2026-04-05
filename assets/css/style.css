@@ -403,7 +403,7 @@ main .about { display: flex; height: auto; padding-top: 45px; padding-bottom: 15
 
 @media screen and (min-width: 769px) { main .about { position: fixed; max-width: 280px; } }
 
-main .about h2 { font-size: 22px; margin-top: 25px; margin-bottom: 0; color: #222222; font-weight: normal; }
+main .about h2 { font-family: "Merriweather", sans-serif; font-size: 17px; margin-top: 25px; margin-bottom: 0; color: #222222; font-weight: normal; }
 
 main .about .tagline { text-align: center; font-size: 22px; margin-top: 0px; color: #aaa; white-space: pre-wrap; line-height: normal; }
 
