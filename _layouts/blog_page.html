@@ -1,0 +1,19 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+
+<ul class="posts">
+  <li class="posts-labelgroup" id="posts-labelgroup">
+      <h1 id="posts-label">{{ page.title }}</h1>
+  </li>
+
+    <ul>
+        {% for post in site.posts %}
+            <li>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</ul>
