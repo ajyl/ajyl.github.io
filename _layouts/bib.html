@@ -51,13 +51,20 @@
       </div>
 
       <div class="periodical">
-      <em>{{entry.conference}}</em>
-      {% if entry.year %}
+      <span class="venue">{{entry.conference}}</span>
+      {% if entry.status %}
+      <span>{{entry.status}}</span>
+      {% endif %}
+      {% assign conference_includes_year = false %}
+      {% if entry.conference and entry.year and entry.conference contains entry.year %}
+        {% assign conference_includes_year = true %}
+      {% endif %}
+      {% if entry.year and conference_includes_year == false %}
         {{entry.year}}
       {% endif %}
 
       {% if entry.note %}
-      <span style="color:red">{{entry.note}}</span>
+      <span class="pub-note">{{entry.note}}</span>
       {% endif %}
       </div>
     {% endif %}

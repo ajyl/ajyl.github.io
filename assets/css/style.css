@@ -415,9 +415,35 @@ main .about .about-header { display: flex; flex-direction: column; }
 
 main .about .about-header .about-title { display: flex; flex-direction: column; align-items: center; margin-bottom: 17px; }
 
-.pubitem { margin: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0em; margin-left: 0px; }
+.pubitem { margin: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0.75em; margin-left: 0px; line-height: 1.55; }
+
+.pubitem > div { margin: 0.15rem 0; }
+
+.pubitem .periodical { font-size: 0.97rem; color: #5b564d; }
+
+.pubitem .venue { font-style: normal; }
+
+h2.bibliography { margin: 1.45rem 0 0.65rem; padding-top: 0.25rem; border-top: 1.5px solid #ddd5c8; font-family: "Merriweather", sans-serif; font-size: 1rem; font-weight: 400; letter-spacing: 0; text-transform: none; color: #8a7f6b; }
+
+.posts > h2.bibliography:first-of-type, .post h2.bibliography:first-of-type { border-top: 0; padding-top: 0; margin-top: 0.25rem; }
+
+.talks-list { margin-top: 0.25rem; }
+
+.talk-item { margin: 0.75rem 0; line-height: 1.55; }
+
+.talk-title { margin-bottom: 0.08rem; }
+
+.talk-venues { color: #5b564d; padding-left: 0.8rem; font-size: 0.97rem; }
+
+.talk-venues div { margin: 0; }
 
 .pubtitle { font-weight: bold; }
+
+.pub-note { color: #b32121; }
+
+.section-labelgroup { margin: 1.5rem 0 0.67em 0; display: flex; align-items: baseline; border-bottom: 1.5px solid #ddd5c8; }
+
+.section-label { font-family: "Merriweather", sans-serif; font-size: 15px; color: #222; text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 0; font-weight: normal; margin: 0; }
 
 #title a { text-decoration: none; }
 
@@ -427,7 +453,7 @@ main .about .about-header .about-title { display: flex; flex-direction: column; 
 
 .social li i { font-size: 34px; }
 
-.navigation { width: 80%; }
+.navigation { width: 100%; }
 
 .navigation ul { list-style-type: none; padding: 0; margin-top: 0; }
 
@@ -463,7 +489,7 @@ main .about .about-header .about-title { display: flex; flex-direction: column; 
 
 .post-container { padding-left: 30px; }
 
-.post { font-family: "Merriweather", sans-serif; font-weight: 300; color: #222; line-height: 1.9em; }
+.post { font-family: "Merriweather", sans-serif; font-weight: 300; color: #222; line-height: 1.55; }
 
 .post p { margin-top: 10px; }
 
@@ -471,11 +497,11 @@ main .about .about-header .about-title { display: flex; flex-direction: column; 
 
 .post a:hover { border-bottom: 0.5px solid #0a59b0; }
 
-.post h1, .post h2, .post h3, .post h4, .post h5, .post h6 { font-family: Raleway, sans-serif; }
+.post h1, .post h2, .post h3, .post h4, .post h5, .post h6 { font-family: "Merriweather", sans-serif; }
 
-.posts-labelgroup { margin: 0 0 0.67em 0; display: flex; align-items: baseline; border-bottom: 1px solid #eee; }
+.posts-labelgroup { margin: 0 0 0.67em 0; display: flex; align-items: baseline; border-bottom: 1.5px solid #ddd5c8; }
 
-#posts-label { font-size: 15px; color: #222; text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 0; font-weight: normal; margin: 0; overflow: hidden; transition: width 0.1s; }
+#posts-label { font-family: "Merriweather", sans-serif; font-size: 15px; color: #222; text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 0; font-weight: normal; margin: 0; overflow: hidden; transition: width 0.1s; }
 
 table th, table td { padding: 8px 13px; border: 1px solid #dfe2e5; }
 
