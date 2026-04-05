@@ -53,10 +53,6 @@ plainwhite:
 #header_pages:
 # - about.md
 
-# Build settings
-theme: plainwhite
-remote_theme: samarsault/plainwhite-jekyll
-
 include: ["_pages"]
 exclude:
   - _about.md
