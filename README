@@ -1,5 +1,8 @@
+Local:
+`bundle exec jekyll serve`
+
 Build:
-`jekyll build --source _pages --config _config.yml`
+`bundle exec jekyll build --config _config.yml`
 
 Deploy:
-`rake commit_deploy`
+Push `main` or `source` to GitHub. GitHub Actions builds and deploys the site.

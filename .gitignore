@@ -1,0 +1,5 @@
+*.swp
+.DS_Store
+.jekyll-cache/
+_pages/.jekyll-cache/
+_site/

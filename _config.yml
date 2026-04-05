@@ -58,6 +58,16 @@ theme: plainwhite
 remote_theme: samarsault/plainwhite-jekyll
 
 include: ["_pages"]
+exclude:
+  - _about.md
+  - README
+  - README.md
+  - Rakefile
+  - index.html
+  - rubygems-3.5.21
+  - rubygems-3.5.21.tgz
+  - assets/css/styles.scss
+  - assets/css/style.scss
 
 scholar:
   last_name: [Lee]
@@ -66,11 +76,10 @@ scholar:
   style: apa
   locale: en
 
-  source: /_bibliography/
+  source: _pages/_bibliography
   bibliography: papers.bib
   bibliography_template: bib
 
   replace_strings: true
   join_strings: true
   bibtex_filters:
-
