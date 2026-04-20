@@ -21,6 +21,7 @@ plainwhite:
   name: Andrew Lee
   tagline: About Me
   date_format: "%b %-d, %Y"
+  analytics_id: "G-H0YMDK3ZVN"
   sitemap: false # set to true to generate sitemap.xml content
   search: false # set to true to enable searchbar
   dark_mode: false # set to true to add dark mode toggle
