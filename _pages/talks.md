@@ -15,6 +15,14 @@ title: "Talks"
     </div>
   </div>
 
+  <div class="talk-item">
+    <div class="talk-title">Shared Global and Local Geometry of Language Model Embeddings</div>
+    <div class="talk-venues">
+      <div>Netflix</div>
+    </div>
+  </div>
+
+
   <h2 class="bibliography">2025</h2>
   <div class="talk-item">
     <div class="talk-title">Understanding Representations to Understand Phenomena</div>
