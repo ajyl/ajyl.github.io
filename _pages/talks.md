@@ -12,6 +12,7 @@ title: "Talks"
       <div>PRISM Journal Club (Harvard)</div>
       <div>Boston University</div>
       <div>ML Collective Deep Learning: Classics and Trends</div>
+      <div>University of Massachusetts Amherst</div>
     </div>
   </div>
 
