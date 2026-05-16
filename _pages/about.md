@@ -20,6 +20,7 @@ When I am not reverse-engineering neural networks, I enjoy playing tennis and ro
   <h2 class="section-label">Select Publications</h2>
 </div>
 
+- [Tensor Product Representation Probes Reveal Shared Structure Across Linear Directions](https://arxiv.org/pdf/2605.09967). Preprint.
 - [Decomposing Query-Key Feature Interactions Using Contrastive Covariances](https://arxiv.org/abs/2602.04752). ICML 2026.
 - [Shared Global and Local Geometry of Language Model Embeddings](https://arxiv.org/abs/2503.21073). COLM 2025. <span class="pub-note">Outstanding Paper Award</span>.
 - [A Mechanistic Understanding of Alignment Algorithms: A Case Study on DPO and Toxicity](https://arxiv.org/abs/2401.01967). ICML 2024. <span class="pub-note">Oral</span>.
