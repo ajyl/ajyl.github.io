@@ -20,6 +20,7 @@ title: "Talks"
     <div class="talk-title">Shared Global and Local Geometry of Language Model Embeddings</div>
     <div class="talk-venues">
       <div>Netflix</div>
+      <div>Santa Clara University</div>
     </div>
   </div>
 
