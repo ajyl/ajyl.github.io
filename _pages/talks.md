@@ -1,11 +1,19 @@
 ---
 layout: page
 permalink: "/talks"
-title: "Talks"
+title: "Invited Talks"
 ---
 
 <div class="talks-list">
   <h2 class="bibliography">2026</h2>
+  <div class="talk-item">
+    <div class="talk-title">Tensor Product Representation Probes Reveal Shared Structure Across Linear Directions</div>
+    <div class="talk-venues">
+      <div>Northeastern University</div>
+    </div>
+  </div>
+
+
   <div class="talk-item">
     <div class="talk-title">Decomposing Query-Key Feature Interactions Using Contrastive Covariances</div>
     <div class="talk-venues">
@@ -13,6 +21,7 @@ title: "Talks"
       <div>Boston University</div>
       <div>ML Collective Deep Learning: Classics and Trends</div>
       <div>University of Massachusetts Amherst</div>
+      <div>Northeastern University</div>
     </div>
   </div>
 
