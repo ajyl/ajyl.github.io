@@ -5,15 +5,9 @@ title: "About"
 ---
 
 
-Hello! I am a post-doctoral fellow at the [Insight + Interaction Lab](https://insight.seas.harvard.edu/) at Harvard, hosted by professors [Martin Wattenberg](https://www.bewitched.com/) and [Fernanda Viégas](http://www.fernandaviegas.com/).
-
+Hello! I am a researcher at [Goodfire](https://www.goodfire.com/). Prior to that I was a post-doc at at Harvard with professors [Martin Wattenberg](https://www.bewitched.com/) and [Fernanda Viégas](http://www.fernandaviegas.com/).
 I did my PhD in computer science at the University of Michigan, advised by [Professor Rada Mihalcea](https://lit.eecs.umich.edu/).
-
-My research interests are at the intersection of machine learning and interpretability. I am particularly interested in understanding the representations learned by neural networks: what kind of feature geometry do they learn and why? How do we uncover them? How do they affect the model's behavior? I am also interested in how these representations and computations are (dis)similar in other intelligent systems.
-
-During my PhD, I spent time at Meta and Microsoft Research.
-Prior to the PhD, I led the Core AI R&D team at [Clinc](https://techcrunch.com/2019/05/20/clinc-raises-52m-series-b-as-it-marches-towards-ipo/), where we built virtual assistants and conversational AI platforms for financial institutions.
-
+My research interests are at the intersection of machine learning and interpretability.
 When I am not reverse-engineering neural networks, I enjoy playing tennis and rowing.
 
 <div class="section-labelgroup">
